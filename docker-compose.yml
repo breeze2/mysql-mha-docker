@@ -1,16 +1,8 @@
 version: "2"
 services:
-  local_mha_manager:
-    build: ./services/mha4mysql-manager
-    image: local/mha4mysql-manager
-    read_only: true
-  local_mha_node:
-    build:  ./services/mha4mysql-node
-    image: local/mha4mysql-node
-    read_only: true
 
   master:
-    image: local/mha4mysql-node
+    build: breeze2/mha4mysql-node:0.57
     container_name: mha_node0
     restart: always
     mem_limit: 256m
@@ -27,7 +19,7 @@ services:
       - ./account.env
 
   slave1:
-    image: local/mha4mysql-node
+    build: breeze2/mha4mysql-node:0.57
     container_name: mha_node1
     restart: always
     depends_on:
@@ -45,7 +37,7 @@ services:
     env_file:
       - ./account.env
   slave2:
-    image: local/mha4mysql-node
+    build: breeze2/mha4mysql-node:0.57
     container_name: mha_node2
     depends_on:
       - master
@@ -64,7 +56,7 @@ services:
       - ./account.env
 
   manager:
-    image: local/mha4mysql-manager
+    build: breeze2/mha4mysql-manager:0.57
     container_name: mha_manager
     depends_on:
       - master
