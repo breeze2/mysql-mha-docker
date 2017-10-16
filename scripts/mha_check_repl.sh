@@ -1,0 +1,1 @@
+docker exec -it mha_manager /bin/bash masterha_check_repl  --conf=/etc/mha/app1.conf
