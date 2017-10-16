@@ -2,7 +2,7 @@ version: "2"
 services:
 
   master:
-    build: breeze2/mha4mysql-node:0.57
+    image: breeze2/mha4mysql-node:0.57
     container_name: mha_node0
     restart: always
     mem_limit: 256m
@@ -19,7 +19,7 @@ services:
       - ./account.env
 
   slave1:
-    build: breeze2/mha4mysql-node:0.57
+    image: breeze2/mha4mysql-node:0.57
     container_name: mha_node1
     restart: always
     depends_on:
@@ -37,7 +37,7 @@ services:
     env_file:
       - ./account.env
   slave2:
-    build: breeze2/mha4mysql-node:0.57
+    image: breeze2/mha4mysql-node:0.57
     container_name: mha_node2
     depends_on:
       - master
@@ -56,7 +56,7 @@ services:
       - ./account.env
 
   manager:
-    build: breeze2/mha4mysql-manager:0.57
+    image: breeze2/mha4mysql-manager:0.57
     container_name: mha_manager
     depends_on:
       - master
