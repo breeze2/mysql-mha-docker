@@ -35,13 +35,18 @@ $ sh ./scripts/mha_check_ssh.sh
 
 ```
 
-6. check mha repl
+6. set mysql replication (master, backup and slave)
+```cmd
+$ sh ./scripts/mysql_set_mbs.sh
+```
+
+7. check mha repl
 ```cmd
 $ sh ./scripts/mha_check_repl.sh
 
 ```
 
-7. start mha manager
+8. start mha manager
 ```cmd
 $ sh ./scripts/mha_start_manager.sh
 
