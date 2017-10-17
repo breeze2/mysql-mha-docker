@@ -1,5 +1,5 @@
 # mysql-mha-docker
-mysql-mha-docker
+mysql mha docker compose
 
 ## Usage
 
