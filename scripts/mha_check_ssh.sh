@@ -1,1 +1,1 @@
-docker exec -it mha_manager /bin/bash masterha_check_ssh  --conf=/etc/mha/app1.conf
+docker exec -it mha_manager masterha_check_ssh  --conf=/etc/mha/app1.conf

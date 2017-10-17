@@ -12,11 +12,13 @@ services:
     ports:
       - "33060:3306"
     volumes:
-      - "./volumes/mha_scripts/:/root/mha_scripts/"
+      - "./volumes/mha_share/:/root/mha_share/"
       - "./volumes/mha_node0/lib/:/var/lib/mysql/"
       - "./volumes/mha_node0/conf/:/etc/mysql/conf.d/"
     env_file:
-      - ./account.env
+      - ./parameters.env
+    environment:
+      - CONTAINER_NAME=mha_node0
 
   slave1:
     image: breeze2/mha4mysql-node:0.57
@@ -31,11 +33,13 @@ services:
     ports:
       - "33061:3306"
     volumes:
-      - "./volumes/mha_scripts/:/root/mha_scripts/"
+      - "./volumes/mha_share/:/root/mha_share/"
       - "./volumes/mha_node1/lib/:/var/lib/mysql/"
       - "./volumes/mha_node1/conf/:/etc/mysql/conf.d/"
     env_file:
-      - ./account.env
+      - ./parameters.env
+    environment:
+      - CONTAINER_NAME=mha_node1
   slave2:
     image: breeze2/mha4mysql-node:0.57
     container_name: mha_node2
@@ -49,11 +53,13 @@ services:
     ports:
       - "33062:3306"
     volumes:
-      - "./volumes/mha_scripts/:/root/mha_scripts/"
+      - "./volumes/mha_share/:/root/mha_share/"
       - "./volumes/mha_node2/lib/:/var/lib/mysql/"
       - "./volumes/mha_node2/conf/:/etc/mysql/conf.d/"
     env_file:
-      - ./account.env
+      - ./parameters.env
+    environment:
+      - CONTAINER_NAME=mha_node2
 
   manager:
     image: breeze2/mha4mysql-manager:0.57
@@ -68,12 +74,14 @@ services:
       net1:
         ipv4_address: 10.5.0.9
     volumes:
-      - "./volumes/mha_scripts/:/root/mha_scripts/"
+      - "./volumes/mha_share/:/root/mha_share/"
       - "./volumes/mha_manager/conf:/etc/mha"
       - "./volumes/mha_manager/work:/usr/local/mha"
     entrypoint: "tailf /dev/null"
     env_file:
-      - ./account.env
+      - ./parameters.env
+    environment:
+      - CONTAINER_NAME=mha_manager
 networks:
   net1:
     driver: bridge

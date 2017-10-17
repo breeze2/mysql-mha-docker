@@ -1,0 +1,1 @@
+cat $MHA_SHARE_SSHKEYS_PATH/*.pub > /root/.ssh/authorized_keys
